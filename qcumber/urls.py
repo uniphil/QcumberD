@@ -8,14 +8,21 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
+from tastypie.api import Api
+from course_catalog.api.resources import SubjectResource, CourseResource
+
+v01_api = Api(api_name='v0.1')
+v01_api.register(SubjectResource())
+v01_api.register(CourseResource())
+
 urlpatterns = patterns('',
-    
 
     # Uncomment the next line to enable the SOLUS screen scraper
     url(r'^solus_scraper/', include('solus_scraper.urls')),
 
     # Uncomment the next line to enable checking of enrollment
     url(r'^enrollment/', include('enrollment.urls')),
+    (r'^api/', include(v01_api.urls)),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

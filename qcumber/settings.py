@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'course_catalog',
     'solus_scraper',
     'enrollment',
+    'tastypie',
 )
 
 # A sample logging configuration. The only tangible logging
